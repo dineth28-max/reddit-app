@@ -61,8 +61,30 @@ pipeline {
                          docker_image.push('latest')
                      }
                  }
+              
              }
         }
+
+
+        stage("Trivy Image Scan") {
+             steps {
+                 script {
+	              sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock dineth123412/trivy image dineth123412x/reddit-clone-pipeline:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
+                 }
+             }
+         }
+
+        stage ('Cleanup Artifacts') {
+             steps {
+                 script {
+                      sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+                      sh "docker rmi ${IMAGE_NAME}:latest"
+                 }
+             }
+         }
+
+        
+        
     }
 }    
              
