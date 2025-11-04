@@ -48,8 +48,7 @@ pipeline {
         stage('TRIVY FS SCAN') {
             steps {
                 sh "trivy fs . > trivyfs.txt"
-				sh "ls -l"
-				archiveArtifacts artifacts: 'trivyimage.txt', fingerprint: true
+				
              }
          }
         stage("Build & Push Docker Image") {
