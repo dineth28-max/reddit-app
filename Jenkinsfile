@@ -11,6 +11,7 @@ pipeline {
         DOCKER_USER = "dineth123412"
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+        IMAGE_TAG = "build-${BUILD_NUMBER}" 
         
     }
     stages {
