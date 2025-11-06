@@ -25,7 +25,7 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/dineth28-max/reddit-app.git'
             }
         }
-        stage("Sonarqube Analysis") {
+        stage('Sonarqube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube-Server') {
                     sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Reddit-Clone-CI \
@@ -34,7 +34,7 @@ pipeline{
             }
         }
 		
-        stage("Quality Gate") {
+        stage('Quality Gate') {
             steps {
                 script {
                     waitForQualityGate abortPipeline: false, credentialsId: 'SonarQube-Token'
