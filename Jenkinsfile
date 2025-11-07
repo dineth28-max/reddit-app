@@ -82,7 +82,16 @@ pipeline{
                       sh "docker rmi ${IMAGE_NAME}:latest"
                  }
              }
-         }  	
+         }
+		stage ('Trigger-CD Pipeline') {
+    steps {
+        script {
+            sh "curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'Cache-Control: no-cache' -H 'Content-Type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://ec2-44-211-60-117.compute-1.amazonaws.com:8080/job/Reditt-Clone-CD/buildWithParameters?token=gitops-token'"
+        }
+    }
+}
+
+		
 	}
 	
 	 post {
