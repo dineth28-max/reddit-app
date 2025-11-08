@@ -90,8 +90,7 @@ pipeline{
             sh "curl -v -k --user dineth:${JENKINS_API_TOKEN} -X POST -H 'Cache-Control: no-cache' -H 'Content-Type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://ec2-100-29-183-196.compute-1.amazonaws.com:8080/job/Reditt-Clone-CD/buildWithParameters?token=gitops-token'"
         }
     }
-}
- 
+} 
  }
  
   post {
