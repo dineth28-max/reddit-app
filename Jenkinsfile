@@ -98,9 +98,7 @@ pipeline{
     				}
 				}
 
-
-
-		
+	
 	}
 	
 	 post {
